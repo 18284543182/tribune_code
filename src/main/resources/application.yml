@@ -20,3 +20,17 @@ spring:
     url: jdbc:mysql://localhost:3306/tribune?serverTimezone=GMT%2B8&useSSL=true
     username: root
     password: 123456
+#Spring整合Mybatis
+mybatis:
+  #定义别名包
+  type-aliases-package: com.xj.tribune.vo
+  #导入映射文件(指定映射文件的路径)
+  mapper-locations: classpath:/mapper/*.xml
+  #开启驼峰映射
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #打印日志
+  logging:
+    level:
+      com.xj.tribune.mapper: debug

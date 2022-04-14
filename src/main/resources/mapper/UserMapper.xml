@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xj.tribune.mapper.UserMapper">
+
+    <resultMap id="userReslutMap" type="User">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"></result>
+        <result column="pass_word" property="passWord"></result>
+    </resultMap>
+
+    <sql id="user_clomun">
+        id,user_name,pass_word
+    </sql>
+
+    <!--查询所有数据-->
+    <select id="findAll" resultMap="userReslutMap">
+        select
+        <include refid="user_clomun"/>
+        from tb_user
+    </select>
+
+    <!-- 保存用户数据 -->
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyColumn="id">
+            insert into tb_user(user_name,pass_word)
+            values (#{userName}, #{passWord})
+    </insert>
+
+    <!--登录-->
+    <select id="login" resultType="User">
+        SELECT
+            id,user_name,pass_word
+        FROM
+            tb_user
+        <where>
+            <if test="null!=username and ''!=username">
+                    and user_name=#{username}
+            </if>
+            <if test="null!=password and ''!=password">
+                    and pass_word=#{password}
+            </if>
+        </where>
+    </select>
+</mapper>
