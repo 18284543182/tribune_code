@@ -32,4 +32,14 @@ public class UserServiceImpl implements IUserService {
     public User login(String username, String password) {
         return userMapper.login(username, password);
     }
+
+    @Override
+    public long register(User user) {
+        try{
+            userMapper.save(user);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user.getId();
+    }
 }

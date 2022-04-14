@@ -8,4 +8,6 @@ public interface IUserService {
     List<User> findAll();
 
     User login(String username, String password);
+
+    long register(User user);
 }

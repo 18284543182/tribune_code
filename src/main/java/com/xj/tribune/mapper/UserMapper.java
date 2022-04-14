@@ -17,4 +17,5 @@ public interface UserMapper {
     void save(User user);
 
     User login(@Param("username") String name, @Param("password") String password);
+
 }
