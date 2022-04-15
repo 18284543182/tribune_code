@@ -29,5 +29,10 @@ public class ViewController {
         return "view/index";
     }
 
+    @GetMapping("/rabbitmq")
+    public String rabbit(){
+        return "view/rabbitmq";
+    }
+
 
 }
